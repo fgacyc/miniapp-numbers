@@ -13,7 +13,7 @@ function culDate(date,type){
 }
 
 export default function AttendanceLineChart({data,type}) {
-    console.log(data)
+    // console.log(data)
     let newData = [];
     for (let record of data){
         newData.push({

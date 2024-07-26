@@ -171,66 +171,68 @@ export default function History() {
     return (
         <div className={"h-screen bg-[#00D97C]"}>
             <NavBar ifShowBackArrow={true}>History</NavBar>
-            <div className={"bg-white mt-6 h-screen rounded-t-2xl px-4 py-4"}>
-                <div className={"font-bold text-2xl  "}>
-                    CG History
-                </div>
-                <div className={"bg-[#F5F5F5] h-16 rounded mt-2 relative flex  items-center py-2 px-4"}>
-                    <img src={"/sheep.svg"} alt="sheep logo" className={"h-30 w-30 absolute right-0"}/>
-                    {
-                        attendanceData && <div>
-                            <div className={"font-bold"}>{attendances.data[0].cgl_name}</div>
-                            <span className={"text-[#64748B]"}>{attendances.data[0].satellite}</span>
-                            <span className={"text-[#64748B]"}> | </span>
-                            <span className={"text-[#64748B]"}>{attendances.data[0].pastoral_team}</span>
-                        </div>
-                    }
-                </div>
-
-                <div className={"h-[calc(100vh-200px)] overflow-y-auto"}>
-                    <div className={"bg-white mb-4 rounded h-[600px]"}>
+            <div className={"bg-[#00D97C] h-[calc(100vh-45px)] overflow-y-auto"}>
+                <div className={"bg-white mt-6  rounded-t-2xl px-4 py-4"}>
+                    <div className={"font-bold text-2xl  "}>
+                        CG History
+                    </div>
+                    <div className={"bg-[#F5F5F5] h-16 rounded mt-2 relative flex  items-center py-2 px-4"}>
+                        <img src={"/sheep.svg"} alt="sheep logo" className={"h-30 w-30 absolute right-0"}/>
                         {
-                            CGLineChartData &&
-                            <AttendanceLineChart data={CGLineChartData} type={"CG"}/>
-                        }
-                        {
-                            ServiceLineChartData &&
-                            <AttendanceLineChart data={ServiceLineChartData} type={"Service"}/>
+                            attendanceData && <div>
+                                <div className={"font-bold"}>{attendances && attendances.data[0].cgl_name}</div>
+                                <span className={"text-[#64748B]"}>{attendances && attendances.data[0].satellite}</span>
+                                <span className={"text-[#64748B]"}> | </span>
+                                <span className={"text-[#64748B]"}>{attendances && attendances.data[0].pastoral_team}</span>
+                            </div>
                         }
                     </div>
 
-                    <div className={"bg-white pb-4"}>
-                        {
-                            attendanceData.length !== 1 && <Table
-                                columns={columns}
-                                data={attendanceData}
-                                expandedRowRender={(record) => record.absence_reason}
-                                expandProps={{
-                                    width: window.innerWidth > 768 ? 15 : 25,
-                                    expandRowByClick: true,
-                                    rowExpandable: (record) => record.absence_reason !== null && record.absence_reason !== ''
-                                        && record.absence_reason !== 'Absence_reason: ',
-                                }}
-                                scroll={{
-                                    x: window.innerWidth * 0.9,
-                                    y: window.innerHeight,
-                                }}
-                                renderPagination={(paginationNode) => (
-                                    <div
-                                        style={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                            marginTop: 10,
-                                        }}
-                                    >
-                                        <Space>
-                                            <span className={"ml-4"}>Items: {attendanceData.length}</span>
-                                        </Space>
-                                        {paginationNode}
-                                    </div>
-                                )}
-                            />
-                        }
+                    <div className={""}>
+                        <div className={"bg-white mb-4 rounded h-[600px]"}>
+                            {
+                                CGLineChartData &&
+                                <AttendanceLineChart data={CGLineChartData} type={"CG"}/>
+                            }
+                            {
+                                ServiceLineChartData &&
+                                <AttendanceLineChart data={ServiceLineChartData} type={"Service"}/>
+                            }
+                        </div>
+
+                        <div className={"bg-white pb-4"}>
+                            {
+                                attendanceData.length !== 1 && <Table
+                                    columns={columns}
+                                    data={attendanceData}
+                                    expandedRowRender={(record) => record.absence_reason}
+                                    expandProps={{
+                                        width: window.innerWidth > 768 ? 15 : 25,
+                                        expandRowByClick: true,
+                                        rowExpandable: (record) => record.absence_reason !== null && record.absence_reason !== ''
+                                            && record.absence_reason !== 'Absence_reason: ',
+                                    }}
+                                    scroll={{
+                                        x: window.innerWidth * 0.9,
+                                        y: window.innerHeight,
+                                    }}
+                                    renderPagination={(paginationNode) => (
+                                        <div
+                                            style={{
+                                                display: 'flex',
+                                                justifyContent: 'space-between',
+                                                marginTop: 10,
+                                            }}
+                                        >
+                                            <Space>
+                                                <span className={"ml-4"}>Items: {attendanceData.length}</span>
+                                            </Space>
+                                            {paginationNode}
+                                        </div>
+                                    )}
+                                />
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

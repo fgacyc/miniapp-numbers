@@ -57,10 +57,13 @@ export default function FormStep1(){
                 <div className={"flex w-full flex-wrap"}>
                     {
                         getLocations().map((location, index) => (
-                            <div key={index} className={`border-2 border-[#F1F1F1] px-4 py-2 rounded-md mr-2 mb-2
-                                ${currentLocation === location && 'border-[#313131]' }
+                            <div key={index} className={`border-2  px-4 py-2 rounded-md mr-2 mb-2
+                                ${currentLocation === location ? 'border-[#313131]': "border-[#F1F1F1]"}
                                 `}
-                                 onClick={() => setLocation(location)}
+                                 onClick={() => {
+                                     // console.log(location)
+                                     setLocation(location)
+                                 }}
                             >
                                 {location}
                             </div>
