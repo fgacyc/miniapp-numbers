@@ -2,7 +2,6 @@ import NavBar from "@/components/nav-bar.jsx";
 import {useParams} from "react-router-dom";
 import {useAttendances} from "@/api/cg.js";
 import {useEffect, useState} from "react";
-import {Space} from "antd-mobile";
 import AttendanceLineChart from "@/pages/CGLAttendance/AttendanceLineChart.jsx";
 import {Table} from "@arco-design/web-react";
 

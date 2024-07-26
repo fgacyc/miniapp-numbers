@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Label} from 'recharts';
+
+import {LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
 import {calculateTwoDaysAgo} from "@/components/tools.js";
 
 

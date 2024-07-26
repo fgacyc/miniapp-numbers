@@ -4,7 +4,6 @@ import {useCGs} from "@/api/cg.js";
 import {getWeekDatesArray} from "@/components/tools.js";
 import {getLocations, getPastoralTeams} from "@/config.js";
 import {Select} from "@arco-design/web-react";
-import {useUserStore} from "@/store/user-store.js";
 const Option = Select.Option;
 
 
@@ -12,7 +11,7 @@ export default function FormStep1(){
     const [currentLocation,setLocation] =useAttendanceStore(state => [state.satellite,state.setLocation])
     const [pastoralTeamOptions,setPastoralTeamOptions] = useState([])
     const [pastoralTeam,setPastoralTeam] = useAttendanceStore(state => [state.pastoral_team,state.setPastoralTeam])
-    const {CGs,isLoading,isError} = useCGs();
+    const {CGs} = useCGs();
     const [cglOptions,setCGLOptions] = useState([]);
     const [cg_id,setCGID] = useAttendanceStore(state => [state.cg_id,state.setCGID])
     const [CGLName,setCGLName] = useAttendanceStore(state => [state.cgl_name,state.setCGLName])

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import  {useEffect} from "react";
 export default function InputPIN({ label, value,onChange ,className,range }) {
     if(!range) range= 2;
 

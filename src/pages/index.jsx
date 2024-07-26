@@ -1,7 +1,7 @@
 import NavBar from "@/components/nav-bar.jsx";
 import UIProgressCircle from "@/components/progress-circle.jsx";
 import FormStep1 from "@/pages/form-step1.jsx";
-import {useEffect, useState} from "react";
+import { useState} from "react";
 import FormStep2 from "@/pages/form-step2.jsx";
 import {LuHistory} from "react-icons/lu";
 import {useNavigate} from "react-router-dom";
