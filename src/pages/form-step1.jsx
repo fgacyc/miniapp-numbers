@@ -30,6 +30,7 @@ export default function FormStep1(){
 
     useEffect(() => {
         if (pastoralTeam === '')  return
+        if (!CGs) return;
         if(CGs.status !== true) return
 
         const cglOptions = CGs.data.filter(cgl => cgl.pastoral_team === pastoralTeam).map(cgl => {
