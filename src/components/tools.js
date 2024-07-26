@@ -193,3 +193,14 @@ export function validate(data) {
 
     return true;
 }
+
+export function timeDetect(weekDurationStr, createAtObj){
+    const sunday = new Date(weekDurationStr.split("-")[1]+ " 12:59:59");
+    const saturday = sunday.getTime() -24 * 60 * 60 * 1000;
+    const saturdayObj = new Date(saturday);
+
+    saturdayObj.setHours(12, 59, 59, 999);
+    // console.log(saturdayObj.toLocaleString())
+    // console.log(createAtObj.toLocaleString())
+    return createAtObj >= saturdayObj;
+}

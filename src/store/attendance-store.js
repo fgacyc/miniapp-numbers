@@ -88,5 +88,24 @@ export const useAttendanceStore = create((set) => ({
             // cg id
             cg_id: useAttendanceStore.getState().cg_id
         }
-    }
+    },
+
+    resetForm: () => {
+        set({
+            cg_om_num: "",
+            cg_nb_num: "",
+            cg_nf_num: "",
+            cg_rnf_num: "",
+            cg_ac_num: "",
+            cg_abs_num: "",
+            cg_absence_reason: "",
+            service_om_num: "",
+            service_nb_num: "",
+            service_nf_num: "",
+            service_rnf_num: "",
+            service_ac_num: "",
+            service_abs_num: "",
+            service_absence_reason: "",
+        })
+    },
 }))

@@ -6,12 +6,14 @@ import FormStep2 from "@/pages/form-step2.jsx";
 import {LuHistory} from "react-icons/lu";
 import {useNavigate} from "react-router-dom";
 import {useAttendanceStore} from "@/store/attendance-store.js";
-import {validate} from "@/components/tools.js";
+import {timeDetect, validate} from "@/components/tools.js";
+import {addAttend, checkDuplicate} from "@/api/cg.js";
 
 export default function Index() {
     const [currentIndex, setCurrentIndex] = useState(0)
     const cg_id = useAttendanceStore(state => state.cg_id);
     const getFormData = useAttendanceStore(state => state.getFormData);
+    const resetForm = useAttendanceStore(state => state.resetForm);
     function nextHandle(){
         setCurrentIndex(currentIndex+1)
     }
@@ -32,14 +34,38 @@ export default function Index() {
         navigate(`/history/${cg_id}`);
     }
 
-    function submit(){
+    async  function submit(){
         const data = getFormData();
 
-        console.log(data)
-        return;
+        // console.log(data)
+        // return;
 
         // validate
         if(validate(data) === false) return;
+
+        // checking duplicate
+        const isDuplicate = await checkDuplicate(data.date,data.cg_id);
+        console.log("isDuplicate",isDuplicate)
+        if(isDuplicate) {
+            alert("Your attendance has been submitted for the week you selected")
+            return;
+        }
+
+        // check it this week start
+        const ifStart = timeDetect(data.date, new Date());
+        if(!ifStart){
+            alert("You can only submit attendance for last week, this week has not started yet")
+            return;
+        }
+
+        addAttend(data).then((res) => {
+            if (res.status === true){
+                alert("Submitted successfully!")
+                resetForm();
+            }else{
+                alert("Submitted failed!")
+            }
+        })
 
     }
 
