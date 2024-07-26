@@ -8,7 +8,7 @@ import {Table} from "@arco-design/web-react";
 
 export default function History() {
     const {cg_id} = useParams();
-    const {attendances, isLoading, isError} = useAttendances(cg_id);
+    const {attendances, isLoading} = useAttendances(cg_id);
     const [attendanceData, setAttendanceData] = useState([{}]);
     const [CGLineChartData, setCGLineChartData] = useState(null);
     const [ServiceLineChartData, setServiceLineChartData] = useState(null);
@@ -170,7 +170,7 @@ export default function History() {
 
     return (
         <div className={"h-screen bg-[#00D97C]"}>
-            <NavBar ifShowBackArrow={true}>History</NavBar>
+            <NavBar ifShowBackArrow={true}>CG History</NavBar>
             <div className={"bg-[#00D97C] h-[calc(100vh-45px)] overflow-y-auto"}>
                 <div className={"bg-white mt-6  rounded-t-2xl px-4 py-4"}>
                     <div className={"font-bold text-2xl  "}>
@@ -222,13 +222,15 @@ export default function History() {
                                             style={{
                                                 display: 'flex',
                                                 justifyContent: 'space-between',
+                                                flexDirection: 'column',
                                                 marginTop: 10,
                                             }}
                                         >
-                                            <Space>
-                                                <span className={"ml-4"}>Items: {attendanceData.length}</span>
-                                            </Space>
-                                            {paginationNode}
+                                            {/*<Space>*/}
+                                            {/*    <span className={"ml-4"}>Items: {attendanceData.length}</span>*/}
+                                            {/*</Space>*/}
+                                            <div>Items: {attendanceData.length}</div>
+                                            <div className={"w-full mt-3"}>{paginationNode}</div>
                                         </div>
                                     )}
                                 />
