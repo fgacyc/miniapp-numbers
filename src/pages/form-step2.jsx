@@ -8,7 +8,8 @@ const TextArea = Input.TextArea;
 
 
 export default function FormStep2(){
-    const roles = ["OM","NB","NF","RNF","AC","ABS"];
+    const setTotalMembersNum = useAttendanceStore(state => state.setTotalMembersNum)
+
     const [cg_om_num, setCG_OM_Num,
         cg_nb_num, setCG_NB_Num,
         cg_nf_num, setCG_NF_Num,
@@ -52,6 +53,8 @@ export default function FormStep2(){
                     placeholder='Number of Group Members'
                     min={0}
                     max={50}
+                    // value={total_members_num}
+                    onChange={setTotalMembersNum}
                 />
             </div>
             <div className={"mt-6 "}>
@@ -64,7 +67,7 @@ export default function FormStep2(){
                     <InputPIN label={"AC"} value={cg_ac_num} onChange={setCG_AC_Num} />
                     <InputPIN label={"ABS"} value={cg_abs_num} onChange={setCG_ABS_Num} />
                 </div>
-                <TextArea rows={3} placeholder='Remarks' />
+                <TextArea rows={3} placeholder='Remarks' onChange={setCG_ABS_Reason} />
             </div>
             <div className={"mt-6 "}>
                 <div className={"font-bold text-lg mb-2"}>Service Attendance</div>
@@ -76,7 +79,7 @@ export default function FormStep2(){
                     <InputPIN label={"AC"} value={service_ac_num} onChange={setService_AC_Num}/>
                     <InputPIN label={"ABS"} value={service_abs_num} onChange={setService_ABS_Num}/>
                 </div>
-                <TextArea rows={3} placeholder='Remarks' />
+                <TextArea rows={3} placeholder='Remarks' onChange={setService_ABS_Reason} />
             </div>
         </>
     )

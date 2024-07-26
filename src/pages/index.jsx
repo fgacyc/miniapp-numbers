@@ -6,11 +6,12 @@ import FormStep2 from "@/pages/form-step2.jsx";
 import {LuHistory} from "react-icons/lu";
 import {useNavigate} from "react-router-dom";
 import {useAttendanceStore} from "@/store/attendance-store.js";
+import {validate} from "@/components/tools.js";
 
 export default function Index() {
     const [currentIndex, setCurrentIndex] = useState(0)
     const cg_id = useAttendanceStore(state => state.cg_id);
-    const [formContainerHeight, setFormContainerHeight] = useState(0);
+    const getFormData = useAttendanceStore(state => state.getFormData);
     function nextHandle(){
         setCurrentIndex(currentIndex+1)
     }
@@ -29,6 +30,17 @@ export default function Index() {
         }
         localStorage.setItem("history_cg_id",cg_id);
         navigate(`/history/${cg_id}`);
+    }
+
+    function submit(){
+        const data = getFormData();
+
+        console.log(data)
+        return;
+
+        // validate
+        if(validate(data) === false) return;
+
     }
 
 
@@ -90,7 +102,9 @@ export default function Index() {
                                 onClick={() => setCurrentIndex(0)}
                             >Back
                             </div>
-                            <div className={"border rounded-lg py-3 px-4 bg-[#00B05C] w-2/3 text-center"}>Submit</div>
+                            <div className={"border rounded-lg py-3 px-4 bg-[#00B05C] w-2/3 text-center"}
+                                    onClick={submit}
+                            >Submit</div>
                         </div>
                     }
                 </div>

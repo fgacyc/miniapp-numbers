@@ -1,20 +1,20 @@
 import React, {useEffect} from "react";
-export default function InputPIN({ label, setter,val ,className,range }) {
+export default function InputPIN({ label, value,onChange ,className,range }) {
     if(!range) range= 2;
 
     function handleChange(e) {
         const valueStr = e.target.value;
         const val = valueStr.substring(0, range);
         if (!val) {
-            setter("")
+            onChange("")
         }
         const value = parent.parseInt(val)
-        setter(value)
+        onChange(value)
     }
 
     useEffect(() => {
-        if(val === 0){
-            setter("")
+        if(value === 0){
+            onChange("")
         }
     }, [])
 
@@ -31,7 +31,7 @@ export default function InputPIN({ label, setter,val ,className,range }) {
                    style={{
                        fontFamily: "Arial",
                    }}
-                   value={val}
+                   value={value}
                    onChange={handleChange}
             />
         </div>

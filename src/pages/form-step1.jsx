@@ -4,6 +4,7 @@ import {useCGs} from "@/api/cg.js";
 import {getWeekDatesArray} from "@/components/tools.js";
 import {getLocations, getPastoralTeams} from "@/config.js";
 import {Select} from "@arco-design/web-react";
+import {useUserStore} from "@/store/user-store.js";
 const Option = Select.Option;
 
 

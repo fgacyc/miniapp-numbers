@@ -65,3 +65,131 @@ export function calculateTwoDaysAgo(inputDateString) {
     // 构建两天前的日期字符串
     return `${year}/${month}/${day}`;
 }
+
+export function validate(data) {
+    // console.log(data)
+
+    if (
+        data.satellite === "" ||
+        data.pastoral_team === "" ||
+        data.cgl_name === "" ||
+        data.cg_id === "" ||
+        data.date === ""
+    ){
+        alert("Please fill in all the fields!")
+        return false;
+    }
+
+    if (data.total_members_num === 0){
+        alert("Total members number cannot be 0!")
+        return false;
+    }
+
+    if (data.satellite ==="Kuchai WK"){
+        return true;
+    }
+
+
+    if (data.cg_om_num < 0 ||
+        data.cg_nb_num < 0 ||
+        data.cg_nf_num < 0 ||
+        data.cg_rnf_num < 0 ||
+        data.cg_ac_num < 0 ||
+        data.cg_abs_num < 0 ||
+        data.service_om_num < 0 ||
+        data.service_nb_num < 0 ||
+        data.service_nf_num < 0 ||
+        data.service_rnf_num < 0 ||
+        data.service_ac_num < 0 ||
+        data.service_abs_num < 0
+    ){
+        alert("The number of members cannot be negative!")
+        return false;
+    }
+
+    if (data.cg_om_num === "" ||
+        data.cg_nb_num === "" ||
+        data.cg_nf_num=== "" ||
+        data.cg_rnf_num === "" ||
+        data.cg_ac_num === "" ||
+        data.cg_abs_num === "" ||
+        data.service_om_num === ""||
+        data.service_nb_num === "" ||
+        data.service_nf_num === "" ||
+        data.service_rnf_num === "" ||
+        data.service_ac_num === "" ||
+        data.service_abs_num === ""
+    ){
+        alert("Please fill in all the number fields!")
+        return false;
+    }
+
+    if (
+        data.cg_om_num === 0 &&
+        data.cg_nb_num === 0 &&
+        data.cg_nf_num=== 0 &&
+        data.cg_rnf_num === 0 &&
+        data.cg_ac_num === 0 &&
+        data.cg_abs_num === 0 &&
+        data.cg_absence_reason !== "" &&
+        data.service_om_num !== "" &&
+        data.service_nb_num !== "" &&
+        data.service_nf_num !== "" &&
+        data.service_rnf_num !== "" &&
+        data.service_ac_num !== "" &&
+        data.service_abs_num !== "" &&
+        data.total_members_num === data.service_om_num + data.service_abs_num
+    )
+    {
+        //alert("If there is no CG, please fill in the absence reason!")
+        return true;
+    }
+
+
+    //CYN special service, only for CYN, need to be removed later #TODO
+    if (
+        data.cg_om_num  === 0 &&
+        data.cg_nb_num  === 0 &&
+        data.cg_nf_num  === 0 &&
+        data.cg_rnf_num  === 0 &&
+        data.cg_ac_num  === 0 &&
+        data.cg_abs_num  === 0
+    ){
+        //alert("If there is no CG, please fill in the absence reason!")
+        return true;
+    }
+
+
+    if (data.cg_abs_num >0 && data.cg_absence_reason === ""){
+        alert("Please fill in the absence reason!")
+        return false;
+    }
+
+    if (data.service_abs_num >0 && data.service_absence_reason === ""){
+        alert("Please fill in the absence reason!")
+        return false;
+    }
+
+    // if (data.cg_abs_num ===0 && data.cg_absence_reason !== ""){
+    //     alert("Please check the CG absence number")
+    //     return false;
+    // }
+    //
+    // if (data.service_abs_num === 0 && data.service_absence_reason !== ""){
+    //     alert("Please check the Service absence number")
+    //     return false;
+    // }
+
+    if (data.total_members_num !== data.cg_om_num + data.cg_abs_num){
+        alert("Please check the OM number and CG absence number!")
+        return false;
+    }
+
+    if (data.total_members_num !== data.service_om_num + data.service_abs_num){
+        alert("Please check the OM number and Service absence number!")
+        alert()
+        return false;
+    }
+
+    return true;
+}
