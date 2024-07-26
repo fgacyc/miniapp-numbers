@@ -177,15 +177,16 @@ export default function History() {
                         CG History
                     </div>
                     <div className={"bg-[#F5F5F5] h-16 rounded mt-2 relative flex  items-center py-2 px-4"}>
-                        <img src={"/sheep.svg"} alt="sheep logo" className={"h-30 w-30 absolute right-0"}/>
                         {
-                            attendanceData && <div>
+                            attendanceData && <div className={"z-20"}>
                                 <div className={"font-bold"}>{attendances && attendances.data[0].cgl_name}</div>
                                 <span className={"text-[#64748B]"}>{attendances && attendances.data[0].satellite}</span>
                                 <span className={"text-[#64748B]"}> | </span>
                                 <span className={"text-[#64748B]"}>{attendances && attendances.data[0].pastoral_team}</span>
                             </div>
                         }
+                        <img src={"/sheep.svg"} alt="sheep logo" className={"h-30 w-30 absolute right-0"}/>
+
                     </div>
 
                     <div className={""}>
