@@ -4,6 +4,7 @@ import {useAttendances} from "@/api/cg.js";
 import {useEffect, useState} from "react";
 import AttendanceLineChart from "@/pages/CGLAttendance/AttendanceLineChart.jsx";
 import {Table} from "@arco-design/web-react";
+import {useTranslation} from "react-i18next";
 
 export default function History() {
     const {cg_id} = useParams();
@@ -164,16 +165,16 @@ export default function History() {
         });
     }
 
-
+    const {t} = useTranslation();
     // console.log(attendances);
 
     return (
         <div className={"h-screen bg-[#00D97C]"}>
-            <NavBar ifShowBackArrow={true}>CG History</NavBar>
+            <NavBar ifShowBackArrow={true}>{t("CG Attendance Records")}</NavBar>
             <div className={"bg-[#00D97C] h-[calc(100vh-45px)] overflow-y-auto"}>
                 <div className={"bg-white mt-6  rounded-t-2xl px-4 py-4"}>
                     <div className={"font-bold text-2xl  "}>
-                        CG History
+                        {t("CG Attendance Records")}
                     </div>
                     <div className={"bg-[#F5F5F5] h-16 rounded mt-2 relative flex  items-center py-2 px-4"}>
                         {

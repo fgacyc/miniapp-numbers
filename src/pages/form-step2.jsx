@@ -2,6 +2,7 @@
 import {InputNumber, Input} from "@arco-design/web-react";
 import {useAttendanceStore} from "@/store/attendance-store.js";
 import InputPIN from "@/components/InputPIN.jsx";
+import {useTranslation} from "react-i18next";
 
 const TextArea = Input.TextArea;
 
@@ -44,13 +45,15 @@ export default function FormStep2(){
         state.service_absence_reason , state.setService_ABS_Reason
     ])
 
+    const {t} = useTranslation();
+
 
     return(
         <>
             <div className={"mt-6 "}>
-                <div className={"font-bold text-lg mb-2"}>Numbers</div>
+                <div className={"font-bold text-lg mb-2"}>{t("Numbers-")}</div>
                 <InputNumber
-                    placeholder='Number of Group Members'
+                    placeholder={t('Number of Group Members')}
                     min={0}
                     max={50}
                     // value={total_members_num}
@@ -58,7 +61,7 @@ export default function FormStep2(){
                 />
             </div>
             <div className={"mt-6 "}>
-                <div className={"font-bold text-lg mb-2"}>CG Attendance</div>
+                <div className={"font-bold text-lg mb-2"}>{t("CG Attendance")}</div>
                 <div className={"flex justify-between items-center mb-4"}>
                     <InputPIN label={"OM"} value={cg_om_num} onChange={setCG_OM_Num} />
                     <InputPIN label={"NB"} value={cg_nb_num} onChange={setCG_NB_Num} />
@@ -67,10 +70,10 @@ export default function FormStep2(){
                     <InputPIN label={"AC"} value={cg_ac_num} onChange={setCG_AC_Num} />
                     <InputPIN label={"ABS"} value={cg_abs_num} onChange={setCG_ABS_Num} />
                 </div>
-                <TextArea rows={3} placeholder='Remarks' onChange={setCG_ABS_Reason} />
+                <TextArea rows={3} placeholder={t("Remarks")} onChange={setCG_ABS_Reason} />
             </div>
             <div className={"mt-6 "}>
-                <div className={"font-bold text-lg mb-2"}>Service Attendance</div>
+                <div className={"font-bold text-lg mb-2"}>{t("Service Attendance")}</div>
                 <div className={"flex justify-between items-center mb-4"}>
                     <InputPIN label={"OM"} value={service_om_num} onChange={setService_OM_Num}/>
                     <InputPIN label={"NB"} value={service_nb_num} onChange={setService_NB_Num}/>
@@ -79,7 +82,7 @@ export default function FormStep2(){
                     <InputPIN label={"AC"} value={service_ac_num} onChange={setService_AC_Num}/>
                     <InputPIN label={"ABS"} value={service_abs_num} onChange={setService_ABS_Num}/>
                 </div>
-                <TextArea rows={3} placeholder='Remarks' onChange={setService_ABS_Reason} />
+                <TextArea rows={3} placeholder={t("Remarks")} onChange={setService_ABS_Reason} />
             </div>
         </>
     )

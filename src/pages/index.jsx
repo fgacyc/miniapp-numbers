@@ -8,6 +8,7 @@ import {useNavigate} from "react-router-dom";
 import {useAttendanceStore} from "@/store/attendance-store.js";
 import {timeDetect, validate} from "@/components/tools.js";
 import {addAttend, checkDuplicate} from "@/api/cg.js";
+import {useTranslation} from "react-i18next";
 
 export default function Index() {
     const [currentIndex, setCurrentIndex] = useState(0)
@@ -68,16 +69,16 @@ export default function Index() {
         })
 
     }
-
+    const {t} = useTranslation();
 
 
     return (
         <div className={"h-screen"}>
-            <NavBar ifShowBackArrow={false}>Numbers</NavBar>
+            <NavBar ifShowBackArrow={false}>{t("Numbers")}</NavBar>
             <div className={"bg-[#00D97C] h-[calc(100vh-45px)] overflow-y-auto"}>
                 <div className={"bg-white mt-6 h-auto rounded-t-2xl px-4 py-4 relative"} id="form-container">
                     <div className={"font-bold text-2xl  "}>
-                        Add Attendances
+                        {t("Add Attendances")}
                     </div>
                     <div className={"mt-6 flex items-center "}>
                         <UIProgressCircle percent={currentIndex === 0 ? 50 : 100}>
@@ -86,12 +87,12 @@ export default function Index() {
                         <div className={"ml-4"}>
                             <div className={"font-bold text-lg"}>
                                 {
-                                    currentIndex === 0 ? "Church Location" : "Numbers"
+                                    currentIndex === 0 ? t("Church Location") : t("Numbers-")
                                 }
                             </div>
                             <div className={"text-[#64748B] text-base"}>
                                 {
-                                    currentIndex === 0 ? "Please choose your location and date" : "Please enter the numbers"
+                                    currentIndex === 0 ? t("Please choose your location and date") : t("Please enter the numbers")
                                 }
                             </div>
                         </div>
@@ -114,7 +115,7 @@ export default function Index() {
                             </div>
                             <div className={"border rounded-lg py-3 px-4 bg-[#00B05C] w-2/3 text-center "}
                                  onClick={nextHandle}
-                            >Next
+                            >{t("Next")}
                             </div>
 
                         </div>
@@ -126,11 +127,11 @@ export default function Index() {
                             <div
                                 className={"bg-white border rounded-lg py-3 px-4 text-black w-1/3 text-center mr-4 font-bold"}
                                 onClick={() => setCurrentIndex(0)}
-                            >Back
+                            >{t("Back")}
                             </div>
                             <div className={"border rounded-lg py-3 px-4 bg-[#00B05C] w-2/3 text-center"}
                                     onClick={submit}
-                            >Submit</div>
+                            >{t("Submit")}</div>
                         </div>
                     }
                 </div>

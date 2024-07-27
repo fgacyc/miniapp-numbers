@@ -4,6 +4,7 @@ import {useCGs} from "@/api/cg.js";
 import {getWeekDatesArray} from "@/components/tools.js";
 import {getLocations, getPastoralTeams} from "@/config.js";
 import {Select} from "@arco-design/web-react";
+import {useTranslation} from "react-i18next";
 const Option = Select.Option;
 
 
@@ -50,11 +51,12 @@ export default function FormStep1(){
         setCGLName(cgl.cgl_name)
     }, [cg_id]);
 
+    const {t} = useTranslation();
 
     return(
         <>
             <div className={"mt-6 "}>
-                <div className={"font-bold text-lg mb-2"}>Location</div>
+                <div className={"font-bold text-lg mb-2"}>{t("Location")}</div>
                 <div className={"flex w-full flex-wrap"}>
                     {
                         getLocations().map((location, index) => (
@@ -73,10 +75,10 @@ export default function FormStep1(){
                 </div>
             </div>
             <div className={"mt-6 "}>
-                <div className={"font-bold text-lg mb-2"}>Your Pastoral Team</div>
+                <div className={"font-bold text-lg mb-2"}>{t("Your Pastoral Team")}</div>
                 <div className={"mt-2"}>
                     <Select
-                        placeholder='Pastoral Team'
+                        placeholder={t('Pastoral Team')}
                         onChange={setPastoralTeam}
                         style={{width: '100%'}}
                     >
@@ -89,7 +91,7 @@ export default function FormStep1(){
                 </div>
                 <div className={"mt-4"}>
                     <Select
-                        placeholder='Cell Group Leader'
+                        placeholder={t('Cell Group Leader')}
                         onChange={setCGID}
                         style={{width: '100%'}}
                     >
@@ -102,16 +104,16 @@ export default function FormStep1(){
                 </div>
             </div>
             <div className={"mt-6 "}>
-                <div className={"font-bold text-lg mb-2"}>Attendance Date</div>
+                <div className={"font-bold text-lg mb-2"}>{t("Attendance Date")}</div>
                 <Select
-                    placeholder='Date Range'
+                    placeholder={t('Date Range')}
                     onChange={setDate}
                     style={{width: '100%'}}
                 >
                     {dateArray && dateArray.length > 0 && dateArray.map((option, index) => (
                         <Option key={index} value={option}>
-                            {index === 0 && option + " (This Week)"}
-                            {index === 1 && option + " (Last Week)"}
+                            {index === 0 && option + t(" (This Week)")}
+                            {index === 1 && option + t(" (Last Week)")}
                             {(index === 2 || index === 3) && option}
                         </Option>
                     ))}
