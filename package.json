@@ -1,6 +1,6 @@
 {
-  "name": "miniapp-react",
-  "name_zh": "React 小程序",
+  "name": "numbers",
+  "name_zh": "民数",
   "author": "FGA TECH TEAM",
   "private": true,
   "version": "1.0.0",
