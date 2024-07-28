@@ -112,19 +112,19 @@ export default  function ActionSheetMenu(){
                 window.location.reload();
             }
         },
-        {
-            title: t("Settings"),
-            icon: <GoGear className={buttonStyle}/>,
-            onClick: () => {
-                setShowMenu(false);
-                navigate('/settings');
-            }
-        },
-        {
-            title: t("Profile"),
-            icon: <GoPerson className={buttonStyle}/>,
-            onClick:()=>window.open(`https://fga-accounts-center.pages.dev/?token=${token}&&language=${lang}`,"_self")
-        },
+        // {
+        //     title: t("Settings"),
+        //     icon: <GoGear className={buttonStyle}/>,
+        //     onClick: () => {
+        //         setShowMenu(false);
+        //         navigate('/settings');
+        //     }
+        // },
+        // {
+        //     title: t("Profile"),
+        //     icon: <GoPerson className={buttonStyle}/>,
+        //     onClick:()=>window.open(`https://fga-accounts-center.pages.dev/?token=${token}&&language=${lang}`,"_self")
+        // },
         {
             title: t("About"),
             icon: <GoInfo className={buttonStyle}/>,
@@ -133,20 +133,20 @@ export default  function ActionSheetMenu(){
                 navigate('/about');
             }
         },
-        {
-            title: t("Share"),
-            icon: config.shared ? <GoShareAndroid className={buttonStyle}/>
-                :<GoShareAndroid className={`${buttonStyle} text-gray-300`}/>,
-            onClick: !config.shared ? null : () => navigator.clipboard.writeText(window.location.href)
-        },
-        {
-            title: t("DEV"),
-            icon: <GoTools className={buttonStyle}/>,
-            onClick: () => {
-                setDevModal(true);
-                setShowMenu(false);
-            }
-        }
+        // {
+        //     title: t("Share"),
+        //     icon: config.shared ? <GoShareAndroid className={buttonStyle}/>
+        //         :<GoShareAndroid className={`${buttonStyle} text-gray-300`}/>,
+        //     onClick: !config.shared ? null : () => navigator.clipboard.writeText(window.location.href)
+        // },
+        // {
+        //     title: t("DEV"),
+        //     icon: <GoTools className={buttonStyle}/>,
+        //     onClick: () => {
+        //         setDevModal(true);
+        //         setShowMenu(false);
+        //     }
+        // }
     ]
 
 
