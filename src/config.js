@@ -1,7 +1,7 @@
 export const satellite_pastoralTeam = {
     "Kuchai YW": ["Move", "Voice", "Mind", "Force", "Heart"],
     "Kuchai WK": ["GS - Joshua Zone"],
-    "Kuchai GS": ["GS - Daniel Yeo Zone", "GS - Ps Jasmine Zone", "GS - Ps Melvin Zone"],
+    "Kuchai GS": ["GS - Daniel Yeo Zone", "GS - Joshua Zone", "GS - Ps Jasmine Zone", "GS - Ps Melvin Zone"],
     // "Klang": ["Young Professional"],
     "Serdang": ["Adult", "Young Warrior", "Young Professional"],
     "Kepong": ["Adult", "Young Warrior", "Young Professional"],
