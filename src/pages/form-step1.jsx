@@ -2,7 +2,7 @@ import {useAttendanceStore} from "@/store/attendance-store.js";
 import {useEffect, useState} from "react";
 import {useCGs} from "@/api/cg.js";
 import {getWeekDatesArray} from "@/components/tools.js";
-import {getLocations, getPastoralTeams} from "@/config.js";
+import {getLocations} from "@/config.js";
 import {Select} from "@arco-design/web-react";
 import {useTranslation} from "react-i18next";
 const Option = Select.Option;
@@ -15,18 +15,27 @@ export default function FormStep1(){
     const {CGs} = useCGs();
     const [cglOptions,setCGLOptions] = useState([]);
     const [cg_id,setCGID] = useAttendanceStore(state => [state.cg_id,state.setCGID])
-    const [CGLName,setCGLName] = useAttendanceStore(state => [state.cgl_name,state.setCGLName])
-    const [CGName,setCGName] = useAttendanceStore(state => [state.cg_name,state.setCGName])
+    const [setCGLName] = useAttendanceStore(state => [state.cgl_name,state.setCGLName])
+    const [setCGName] = useAttendanceStore(state => [state.cg_name,state.setCGName])
     const dateArray = getWeekDatesArray(4);
-    const [date,setDate] = useAttendanceStore(state => [state.date,state.setDate])
+    const [setDate] = useAttendanceStore(state => [state.date,state.setDate])
 
     // console.log(CGs)
     // console.log(dateArray)
 
     useEffect(() => {
         if (currentLocation === '') return
+
+        // Filter CGs.data where the satellite matches currentLocation
+        const getPastoralTeams = (location) => {
+            return CGs.data
+                .filter(cg => cg.satellite === location) // Match the current location
+                .map(cg => cg.pastoral_team) // Extract pastoral_team
+                .filter((team, index, self) => self.indexOf(team) === index); // Remove duplicates
+        };
+
         setPastoralTeamOptions(getPastoralTeams(currentLocation))
-    }, [currentLocation]);
+    }, [currentLocation, CGs]);
 
     useEffect(() => {
         if (pastoralTeam === '')  return
@@ -42,14 +51,14 @@ export default function FormStep1(){
         })
         // console.log("CGL Options",cglOptions)
         setCGLOptions(cglOptions)
-    }, [pastoralTeam]);
+    }, [currentLocation, pastoralTeam, CGs]);
     
     useEffect(() => {
         const cgl = cglOptions.filter(cgl => cgl.cg_id === cg_id)[0]
         if (!cgl) return;
         setCGName(cgl.cg_name)
         setCGLName(cgl.cgl_name)
-    }, [cg_id]);
+    }, [cg_id, cglOptions, setCGName, setCGLName]);
 
     const {t} = useTranslation();
 
