@@ -33,7 +33,7 @@ export default function FormStep1(){
         if (!CGs) return;
         if(CGs.status !== true) return
 
-        const cglOptions = CGs.data.filter(cgl => cgl.pastoral_team === pastoralTeam).map(cgl => {
+        const cglOptions = CGs.data.filter(cgl => cgl.satellite === currentLocation && cgl.pastoral_team === pastoralTeam ).map(cgl => {
             return {
                 cgl_name: cgl.CG_leader,
                 cg_id: cgl.CG_id,
