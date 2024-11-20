@@ -15,8 +15,10 @@ export default function FormStep1(){
     const {CGs} = useCGs();
     const [cglOptions,setCGLOptions] = useState([]);
     const [cg_id,setCGID] = useAttendanceStore(state => [state.cg_id,state.setCGID])
-    const [setCGLName] = useAttendanceStore(state => [state.cgl_name,state.setCGLName])
-    const [setCGName] = useAttendanceStore(state => [state.cg_name,state.setCGName])
+    const { setCGName, setCGLName } = useAttendanceStore(state => ({
+        setCGName: state.setCGName,
+        setCGLName: state.setCGLName,
+    }));
     const dateArray = getWeekDatesArray(4);
     const [setDate] = useAttendanceStore(state => [state.date,state.setDate])
 
