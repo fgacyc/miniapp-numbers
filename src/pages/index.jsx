@@ -35,10 +35,10 @@ export default function Index() {
         navigate(`/history/${cg_id}`);
     }
 
-    async  function submit(){
+    async function submit(){
         const data = getFormData();
 
-        // console.log(data)
+        console.log(data)
         // return;
 
         // validate
