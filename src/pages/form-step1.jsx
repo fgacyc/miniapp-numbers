@@ -9,18 +9,31 @@ const Option = Select.Option;
 
 
 export default function FormStep1(){
-    const [currentLocation,setLocation] =useAttendanceStore(state => [state.satellite,state.setLocation])
-    const [pastoralTeamOptions,setPastoralTeamOptions] = useState([])
-    const [pastoralTeam,setPastoralTeam] = useAttendanceStore(state => [state.pastoral_team,state.setPastoralTeam])
-    const {CGs} = useCGs();
-    const [cglOptions,setCGLOptions] = useState([]);
-    const [cg_id,setCGID] = useAttendanceStore(state => [state.cg_id,state.setCGID])
-    const { setCGName, setCGLName } = useAttendanceStore(state => ({
+    const {
+        satellite: currentLocation,
+        setLocation,
+        pastoral_team: pastoralTeam,
+        setPastoralTeam,
+        cg_id,
+        setCGID,
+        setCGName,
+        setCGLName,
+        setDate,
+    } = useAttendanceStore(state => ({
+        satellite: state.satellite,
+        setLocation: state.setLocation,
+        pastoral_team: state.pastoral_team,
+        setPastoralTeam: state.setPastoralTeam,
+        cg_id: state.cg_id,
+        setCGID: state.setCGID,
         setCGName: state.setCGName,
         setCGLName: state.setCGLName,
+        setDate: state.setDate,
     }));
+    const [pastoralTeamOptions,setPastoralTeamOptions] = useState([])
+    const [cglOptions,setCGLOptions] = useState([])
+    const {CGs} = useCGs();
     const dateArray = getWeekDatesArray(4);
-    const [setDate] = useAttendanceStore(state => [state.date,state.setDate])
 
     // console.log(CGs)
     // console.log(dateArray)
